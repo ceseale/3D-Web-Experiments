@@ -1,0 +1,36 @@
+{
+  "name": "experiments",
+  "version": "1.0.0",
+  "description": "A bunch of experiments with 3D technologies for the web",
+  "main": "index.js",
+  "scripts": {
+    "start": "wzrd ./glsl-raytrace/index.js:bundle.min.js",
+    "prepublish": "browserify ./glsl-raytrace/index.js | uglifyjs -cm > bundle.min.js"
+  },
+  "browserify": {
+    "transform": [
+      "glslify"
+    ]
+  },
+  "dependencies": {
+    "a-big-triangle": "^1.0.2",
+    "canvas-fit": "^1.5.0",
+    "gl-buffer": "^2.1.1",
+    "gl-clear": "^1.0.0",
+    "gl-context": "^0.1.1",
+    "gl-mat4": "^1.0.1",
+    "gl-shader": "^4.0.5",
+    "glsl-noise": "0.0.0",
+    "glsl-raytrace": "^1.0.0",
+    "glsl-sdf-normal": "^1.0.0",
+    "glsl-turntable-camera": "^1.0.0",
+    "glslify": "^2.2.1",
+    "mouse-position": "^2.0.1",
+    "right-now": "^1.0.0"
+  },
+  "devDependencies": {
+    "browserify": "^8.0.3",
+    "uglify-js": "^2.4.16",
+    "wzrd": "^1.1.0"
+  }
+}
