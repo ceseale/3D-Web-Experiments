@@ -1,7 +1,7 @@
 {
   "name": "experiments",
   "version": "1.0.0",
-  "description": "A bunch of experiments with 3D technologies for the web",
+  "description": "Experiments with glslify",
   "main": "index.js",
   "scripts": {
     "streetview": "wzrd ./env-streetview/index.js:bundle.min.js",
