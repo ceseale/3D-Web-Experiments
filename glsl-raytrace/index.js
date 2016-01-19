@@ -31,10 +31,10 @@ function render() {
   // shader.attributes.position.pointer();
   shader.uniforms.iGlobalTime = (now() - start) / 1000;
   shader.uniforms.iResolution = [width, height, 1];
-  shader.uniforms.iMouse = [mouse.x, canvas.height - mouse.y];
+  shader.uniforms.iMouse = [mouse[0]/width, mouse[1]/height];
   triangle(gl);
 }
-
+console.log(mouse)
 // Resize the canvas to fit the screen
 window.addEventListener('resize'
   , fit(canvas)

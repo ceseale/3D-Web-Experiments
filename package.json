@@ -4,7 +4,8 @@
   "description": "A bunch of experiments with 3D technologies for the web",
   "main": "index.js",
   "scripts": {
-    "start": "wzrd ./glsl-raytrace/index.js:bundle.min.js",
+    "streetview": "wzrd ./env-streetview/index.js:bundle.min.js",
+    "noise": "wzrd ./glsl-raytrace/index.js:bundle.min.js",
     "prepublish": "browserify ./glsl-raytrace/index.js | uglifyjs -cm > bundle.min.js"
   },
   "browserify": {
@@ -25,8 +26,10 @@
     "glsl-sdf-normal": "^1.0.0",
     "glsl-turntable-camera": "^1.0.0",
     "glslify": "^2.2.1",
+    "gsvpano": "^1.2.0",
     "mouse-position": "^2.0.1",
-    "right-now": "^1.0.0"
+    "right-now": "^1.0.0",
+    "three": "^0.73.2"
   },
   "devDependencies": {
     "browserify": "^8.0.3",

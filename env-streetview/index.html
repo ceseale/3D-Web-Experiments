@@ -1,0 +1,54 @@
+<<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+
+    <script type="x-shader/x-vertex" id="vertexShader">
+    
+    varying vec3 vReflect;
+    varying vec3 vRefract;
+    
+    void main() {
+      vec4 mPosition = modelMatrix * vec4( position, 1.0 );
+      vec3 nWorld = normalize( mat3( modelMatrix[0].xyz, modelMatrix[1].xyz, modelMatrix[2].xyz ) * normal );
+      vReflect = normalize( reflect( normalize( mPosition.xyz - cameraPosition ), nWorld ) );
+      vRefract = normalize( refract( normalize( mPosition.xyz - cameraPosition ), nWorld, 0.9 ) );
+      gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+    }
+
+    </script>
+    
+    <script type="x-shader/x-vertex" id="fragmentShader">
+    
+    uniform float rAmount;
+    uniform sampler2D texture;
+    uniform sampler2D scaledTexture;
+    varying vec3 vReflect;
+    varying vec3 vRefract;
+
+    void main(void) {
+      float PI = 3.14159265358979323846264;
+
+      float yaw = .5 - atan( vReflect.z, - vReflect.x ) / ( 2.0 * PI );
+      float pitch = .5 - asin( vReflect.y ) / PI;
+      vec3 color = texture2D( scaledTexture, vec2( yaw, 1. - pitch ) ).rgb * ( 1.0 - rAmount );
+
+      yaw = .5 - atan( vRefract.z, - vRefract.x ) / ( 2.0 * PI );
+      pitch = .5 - asin( vRefract.y ) / PI;
+      color += texture2D( texture, vec2( yaw, 1. - pitch ) ).rgb * rAmount;
+
+      gl_FragColor = vec4( color, 1.0 );
+    }
+
+    </script>
+<body>
+
+</body>
+
+    <script type="text/javascript" src"./assets/map.js"></script>
+    <script type="text/javascript" src"./assets/geocoder.js"></script>
+    <script type="text/javascript" src"./assets/geometry.js"></script>
+    <script type="text/javascript" src"./assets/streetview.js"></script>
+    <script type="text/javascript" src"./assets/GSVPano.js"></script>
+</html>

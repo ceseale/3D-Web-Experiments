@@ -11,7 +11,7 @@ vec2 doModel(vec3 p);
 #pragma glslify: noise = require('glsl-noise/simplex/4d')
 
 vec2 doModel(vec3 p) {
-  float r  = 1.0 + noise(vec4(p, iGlobalTime)) * 0.25;
+  float r  = 1.0 + noise(vec4(p, (iGlobalTime))) * iMouse.x;
   float d  = length(p) - r;
   float id = 0.0;
 
